@@ -1,6 +1,7 @@
 # Build HDT library for SWI-Prolog
 
-HDTHOME=hdt-cpp/libhdt
+HDTCPPHOME=hdt-cpp
+HDTHOME=$(HDTCPPHOME)/libhdt
 SOBJ=	$(PACKSODIR)/hdt4pl.$(SOEXT)
 CFLAGS+=-I$(HDTHOME)/include -I/usr/local/lib/swipl-7.7.15/include/ -g
 LIBS=	-L$(HDTHOME) -lhdt
@@ -19,13 +20,13 @@ c/hdt4pl.o: c/hdt4pl.cpp $(HDTHOME)/libhdt.a
 $(HDTHOME)/.make-senitel:
 #	[ ! -f $(HDTHOME)/Makefile ] || (cd $(HDTHOME) && git reset --hard)
 	git submodule update --init
-	$(HDTHOME)/autogen.sh
-	$(HDTHOME)/configure
+	cd $(HDTCPPHOME) && ./autogen.sh
+	cd $(HDTCPPHOME) && ./configure
 	sed -i 's/^FLAGS=-O3/FLAGS=-fPIC -O3/' $(HDTHOME)/Makefile
 	touch $@
 
 $(HDTHOME)/libhdt.a: $(HDTHOME)/.make-senitel
-	$(MAKE) -C $(HDTHOME) all
+	$(MAKE) -C $(HDTCPPHOME) all
 
 check::
 install::
