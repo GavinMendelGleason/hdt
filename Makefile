@@ -3,7 +3,7 @@
 HDTCPPHOME=hdt-cpp
 HDTHOME=$(HDTCPPHOME)/libhdt
 SOBJ=	$(PACKSODIR)/hdt4pl.$(SOEXT)
-CFLAGS+=-I$(HDTHOME)/include -I/usr/local/lib/swipl-7.7.15/include/ -g
+CFLAGS+=-I$(HDTHOME)/include -g
 LIBS=	-L$(HDTHOME) -lhdt
 OBJ=	c/hdt4pl.o
 LD=g++
