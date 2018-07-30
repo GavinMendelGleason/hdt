@@ -4,7 +4,7 @@ HDTCPPHOME=hdt-cpp
 HDTHOME=$(HDTCPPHOME)/libhdt
 SOBJ=	$(PACKSODIR)/hdt4pl.$(SOEXT)
 CFLAGS+=-I$(HDTHOME)/include -g
-LIBS=	-L$(HDTHOME) -lhdt
+LIBS=	-L$(HDTHOME)/.libs -lhdt
 OBJ=	c/hdt4pl.o
 LD=g++
 
