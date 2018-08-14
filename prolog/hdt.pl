@@ -117,9 +117,9 @@ hdt_search(HDT, S, P, O) :-
 %	True if <S,P,O> is a triple in the header of HDT.
 
 hdt_header(HDT, S, P, O) :-
-	hdt_search(HDT, header, S, P, O0),
-	header_object(O0, O).
+	hdt_search(HDT, header, S, P, O).
 
+% header_object/2 is now obsolete.
 header_object(O0, O) :-
 	string(O0), !,
 	header_untyped_object(O0, O).
