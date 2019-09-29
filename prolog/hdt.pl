@@ -220,8 +220,7 @@ pre_object(_HDT, O, OHDT) :-
 	OHDT = O.
 pre_object(_HDT, O, OHDT) :-
 	ground(O), !,
-	rdf_lexical_form(O, Lexical),
-	canonical_string(Lexical, OHDT).
+	canonical_string(O, OHDT).
 pre_object(HDT, O, OHDT) :-
 	nonvar(O),
 	O = String@Lang,
