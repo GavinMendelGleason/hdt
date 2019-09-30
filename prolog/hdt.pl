@@ -248,8 +248,22 @@ post_object(O, _HDT) :-
 post_object(O, IRI) :-
 	atom(IRI), !,
 	O = IRI.
-post_object(O, HDT) :-
-	rdf_canonical_literal(HDT, O).
+post_object(O, IRI) :-
+	string(IRI), !,
+	string_to_atom(IRI,O).
+post_object(literal(lang(LA,O)), O@L) :-
+    !,
+    string_to_atom(L,LA).
+post_object(literal(type(TA,S)), S^^T) :-
+    string_to_atom(T,TA).
+post_object(O@LA, O@L) :-
+    !,
+    string_to_atom(L,LA).
+post_object(S^^TA, S^^T) :-
+    string_to_atom(T,TA).
+
+
+%	rdf_canonical_literal(HDT, O).
 
 %%	hdt_suggestions(+HDT, +Base, +Role, +MaxResults, -Results:list) is det.
 %
